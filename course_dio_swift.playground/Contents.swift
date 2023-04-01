@@ -124,3 +124,64 @@ for i in 0..<4{
 }
 
 print(total)
+
+
+// Funções e Closures
+// é possivel utilizar paramentro nomeados
+func greet(person: String, day: String) -> String{ //  para retornar algo utiliza '->' , caso contrario é um void, caso tenha retorno precisa determinar o tipo
+    return "retornando string"
+}
+greet(person: "João", day:  "Tiesday")
+
+
+// é possivel colocar um rotulo na variavel nomeada, assim quando a função a baixo for chamada o paramentro day é chamado com 'on'
+func greet(_ person: String, on day: String) -> String{
+    return "retornando string"
+}
+greet("nome", on: "Tuesday")
+
+
+// é possivel retornar mais de um valor em uma função
+func calculateStatics(scores: [Int]) -> (min: Int, max: Int, sum: Int){
+    return (0,9, 9)
+}
+
+// forma de acesso do retorno de dupla
+var result = calculateStatics(scores: [1,1,1,2,])
+print(result.max)
+print(result.2)
+
+// funções podem retornar uma função
+func makeIcrementer() -> ((Int) -> Int){
+    func addOne(number: Int) -> Int{
+        return 1 + number
+    }
+    
+    return addOne
+}
+
+var increment = makeIcrementer()
+increment(7)
+
+// usar função como argumento
+func hasAnyMaches(list: [Int], condition: (Int) -> Bool) -> Bool{
+    for item in list{
+        if condition(item){
+            return true
+        }
+    }
+    return false
+}
+
+func lessThanTen(number: Int) -> Bool{
+    return number < 10
+}
+
+var numbers = [20, 19, 7, 12]
+hasAnyMaches(list: numbers, condition: lessThanTen)
+
+numbers.map({
+    (number: Int) -> Int in
+    let result = 3 * number
+    return result
+} )
