@@ -41,5 +41,86 @@ let emptyArray: [String] = []
 let emptyDicionary: [String: Float] = [:]
 
 
+// Control Flow
+let individualScore = [19,12,45,0,78,7,5,9,6,490]
+var teamScore = 0
 
+for score in individualScore { // for
+    if score > 50 {
+        teamScore += 3
+    } else {
+        teamScore += 1
+    }
+}
+print(teamScore)
 
+var optionalString: String? // dessa forma a variavel é chamada de opcional e pode ser nulo
+print(optionalString == nil) // a palavra reservada em swift para nulo é nil
+
+var optionalName: String?
+var greeting = "Olá"
+if let name = optionalName { // pegando valor opcional, se valor for diferente de nulo conteudo do if é executado
+    greeting = "Olá, \(name)"
+}
+
+let nickName: String? = nil
+let fullName: String = "Uma nome"
+let informalGreeting = "Hi \(nickName ??  fullName)" // é possivel usar o operador ?? para verificar nil
+
+// switch case
+let vegetable = "red pepper"
+switch vegetable {
+case "celery":
+    print("case one")
+case "red pepper", "cucumbre":
+    print("case two")
+case let x where x.hasSuffix("papper"):
+    print("case three")
+default:
+    print("default")
+
+}
+
+let interestingNumbers = [
+    "Prime": [2,5,6,8],
+    "Fibonacci": [1,4,6,89,0],
+    "Square": [1,4,8,16, 25]
+]
+
+// interando dicionario
+var largest = 0
+var key = ""
+for (_key, numbers) in interestingNumbers{
+    for number in  numbers {
+        if number > largest{
+            largest = number
+            key = _key
+        }
+    }
+}
+
+print(largest)
+print(key)
+
+// while
+var n = 2
+while n < 100 {
+    n *= 2
+}
+
+// repeat while
+print(n)
+var m = 2
+repeat {
+    m *= 2
+} while m < 100
+
+print(m)
+
+// for com range
+var total = 0
+for i in 0..<4{
+    total += i
+}
+
+print(total)
