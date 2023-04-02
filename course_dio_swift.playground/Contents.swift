@@ -185,3 +185,57 @@ numbers.map({
     let result = 3 * number
     return result
 } )
+
+
+// Objetos e Classes
+class ClassOne{ // os atributos precisa sem inicializados caso não sejam passados no contrutor
+    var name: String = "nome"
+    var vale: String = "teste"
+}
+
+var instance = ClassOne()
+instance.name = "outro nome"
+
+
+class ClassTwo{
+    var name: String
+    
+    // o contrutor no swift se chama init
+    init(name: String){
+        self.name = name // o metodo self equivale ao this
+    }
+    
+    // funciona como um dispose, é executado quando termina instancia
+    deinit{
+        self.name = ""
+    }
+    
+    func run(){
+        print("correr !!!")
+    }
+    
+    var instance = ClassOne()
+}
+
+var instance2 = ClassTwo(name: "value")
+
+// herança ClassThree herda da ClassTwo
+class ClassThree: ClassTwo{
+    
+    var sideLength: Double
+    
+    init(sideLength: Double, name: String){
+        self.sideLength = sideLength
+        super.init(name: name)
+    }
+    
+    override func run(){
+        print("correr muito")
+    }
+}
+
+var instance3 = ClassThree(sideLength: 15.0, name: "nome")
+instance3.run()
+
+
+
