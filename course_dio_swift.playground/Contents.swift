@@ -237,5 +237,107 @@ class ClassThree: ClassTwo{
 var instance3 = ClassThree(sideLength: 15.0, name: "nome")
 instance3.run()
 
+// Enums e Structures
+enum Rank: Int{
+    // o enum por padrão possui a uma estrutura sequencial, como o primeiro (ace) é 1, o two automaticamente vai ser identificado com 2 e assim por diante
+    case ace = 1
+    case two, three, four, five, six, seven, eight, nine, ten
+    case jack, quenn, king
+    
+    func simpleDescription() -> String{
+        switch self{
+            case .ace:
+                return "ace"
+            case .jack:
+                return "jack"
+            default:
+                return String(self.rawValue)
+        }
+    }
+}
+
+let ace = Rank.ace
+let aceRawValue = ace.rawValue
+let aceDescription = ace.simpleDescription()
+let king = Rank.king.rawValue
+
+if let convertedRank = Rank(rawValue: 5){
+    let fiveDescription = convertedRank.simpleDescription()
+}
+
+enum Suit{
+    case spade, hearts, diamonds, clubs
+    
+    
+    func simplesDescription() -> String {
+        switch self {
+        case .spade:
+            return "spades"
+        case .hearts:
+            return "hearts"
+        case .diamonds:
+            return "diamonds"
+        case .clubs:
+            return "clubs"
+        }
+    }
+}
+
+let heart = Suit.hearts
+let heartDescription = heart.simplesDescription()
+
+enum ServerResponse{
+    case result(String, String)
+    case failure(String)
+}
+
+let success = ServerResponse.result("06:00 am", "08:00 pm")
+let error = ServerResponse.failure("Out of cheese")
+
+switch success {
+case let .result(sunrise, sunset):
+    print("Sunrise is at \(sunrise) and sunset is at \(sunset)")
+case let .failure(message):
+    print("Error ... \(message)")
+}
+
+struct Card{
+    var rank: Rank
+    var suit: Suit
+    
+    func simplesDescription() -> String{
+        return "The \(rank.simpleDescription()) of \(suit.simplesDescription())"
+    }
+}
+
+let threeOfSpades = Card(rank: .three, suit: .spade)
+let threeOfSpadesDescription = threeOfSpades.simplesDescription()
+
+// Diferença entre Class e Struct
+
+class GoogleSheet{
+    var author: String
+    
+    init(author: String){
+        self.author = author
+    }
+}
+// classes são copiados por referencia, então se criar um objetoUM e depois atribuir ele para um objetoDOIS, se alterar o objetoDOIS tbm altera o objetoUM
+let file = GoogleSheet(author: "Pedro")
+let author = file.author
+let fileChanged = file
+fileChanged.author = "João"
+let authorChanged = fileChanged.author
+print(file.author)
+
+// No caso da copia de uma struct são objetos independentes ao ser copiados
+struct Excel{
+    var author: String
+}
+let fileExcel = Excel(author: "Pedro")
+var fileExcelChanged = fileExcel
+fileExcelChanged.author = "Joao"
+print(fileExcel.author)
+
 
 
