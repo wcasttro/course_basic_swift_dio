@@ -340,4 +340,52 @@ fileExcelChanged.author = "Joao"
 print(fileExcel.author)
 
 
+// Protocolos e Extensões
+protocol ExampleProtocol{
+    var simpleDrescription: String { get }
+    mutating func adjust()
+}
+
+class SimpleClass: ExampleProtocol{
+    var simpleDrescription: String = "A very simple  class"
+    var  anotherProperty: Int = 56153
+    func adjust() {
+        simpleDrescription += " Now 100% adjusted"
+    }
+}
+
+var a = SimpleClass()
+a.adjust()
+print(a.simpleDrescription)
+
+
+struct SimpleStructure: ExampleProtocol{
+    var simpleDrescription: String = "A very simple struct "
+    
+    mutating func adjust() { // para modificar um metodo de struct é necessário colocar a palavra chave mutating
+        simpleDrescription += " (adjusted)"
+    }
+}
+
+var b = SimpleStructure()
+b.adjust()
+print(b.simpleDrescription)
+
+
+extension Int: ExampleProtocol{
+    var simpleDrescription: String {
+        return "The number \(self)"
+    }
+    
+    mutating func adjust() {
+        self += 42
+    }
+}
+
+print(7.simpleDrescription)
+
+
+
+
+
 
