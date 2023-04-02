@@ -385,6 +385,28 @@ extension Int: ExampleProtocol{
 print(7.simpleDrescription)
 
 
+// Error Handling
+enum PrintError: Error {
+    case outOfPaper
+    case noToner
+    case onFire
+}
+
+func send(job: Int, toPrinterName printerName: String) throws -> String {
+    if printerName == "Never Has Toner" {
+        throw PrintError.noToner
+    }
+        
+    return "Job sent"
+}
+
+do {
+    let printResponse = try  send(job: 153156, toPrinterName: "Never Has Toner")
+    print(printResponse)
+} catch {
+    print(error)
+}
+
 
 
 
