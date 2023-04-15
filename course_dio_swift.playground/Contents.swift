@@ -408,6 +408,92 @@ do {
 }
 
 
+// -------------------------- Pilha -------------------------------------------
+
+struct StringStack {
+    private var array = [String]()
+    
+    mutating func push(item: String){
+        array.append(item)
+    }
+    
+    mutating func pop() -> String? {
+        return array.popLast()
+    }
+    
+    func top() -> String? {
+        return array.last
+    }
+    
+    var isEmpty: Bool {
+        return array.isEmpty
+    }
+}
+
+var stack = StringStack()
+print(stack.top() ?? "Pilha vazia")
+print(stack.isEmpty)
+
+stack.push(item: "bola")
+stack.push(item: "carro")
+stack.push(item: "moto")
+
+print(stack.isEmpty)
+print(stack.top() ?? "Pilha vazia")
+stack.pop()
+print(stack.top() ?? "Pilha vazia")
+
+print(stack)
+
+// -------------------------- Fila -------------------------------------------
+struct StringQueue {
+    
+    private var array = [String]()
+    
+    mutating func inserir(item: String) {
+         array.append(item)
+    }
+    
+    mutating func remover() -> String? {
+        if array.isEmpty {
+            return nil
+        }
+       let temp = array.first
+        array.first
+       return temp
+    }
+    
+    mutating func verTopo() -> String? {
+        return array.first
+    }
+    
+    var isEmpty: Bool {
+        return array.isEmpty
+    }
+    
+}
+
+var queue = StringQueue()
+print(queue.verTopo() ?? "Fila vazia")
+print(queue.isEmpty)
+
+queue.inserir(item: "bola")
+queue.inserir(item: "carro")
+queue.inserir(item: "moto")
+
+print(queue.isEmpty)
+print(queue.verTopo() ?? "Fila vazia")
+queue.remover()
+print(queue.verTopo() ?? "Fila vazia")
+
+print(queue)
+
+// -------------------------- Arvore binaria -------------------------------------------
+
+enum StringBinaryTree {
+    case empty
+    indirect case node(StringBinaryTree, String, StringBinaryTree)
+}
 
 
 
